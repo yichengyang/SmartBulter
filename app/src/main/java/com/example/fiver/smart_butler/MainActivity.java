@@ -16,6 +16,7 @@ import com.example.fiver.smart_butler.fragment.GirlFragment;
 import com.example.fiver.smart_butler.fragment.UserFragment;
 import com.example.fiver.smart_butler.fragment.WeChatFragment;
 import com.example.fiver.smart_butler.ui.SettingActivity;
+import com.example.fiver.smart_butler.utils.L;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +41,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         getSupportActionBar().setElevation(0);
         initData();
         initView();
+
+        L.d("text");
+        L.i("text");
+        L.e("text");
+        L.w("text");
     }
 
     //初始化数据
