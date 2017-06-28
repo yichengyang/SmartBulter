@@ -28,7 +28,8 @@
         <activity android:name=".MainActivity" />
 
         <!--引导页面-->
-        <activity android:name=".ui.GuideActivity" />
+        <activity android:name=".ui.GuideActivity"
+            android:theme="@style/NoActivityFullScreen"/>
     </application>
 
 </manifest>
