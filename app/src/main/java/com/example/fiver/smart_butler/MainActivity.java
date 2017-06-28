@@ -17,6 +17,7 @@ import com.example.fiver.smart_butler.fragment.UserFragment;
 import com.example.fiver.smart_butler.fragment.WeChatFragment;
 import com.example.fiver.smart_butler.ui.SettingActivity;
 import com.example.fiver.smart_butler.utils.L;
+import com.tencent.bugly.crashreport.CrashReport;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,10 +43,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         initData();
         initView();
 
-        L.d("text");
-        L.i("text");
-        L.e("text");
-        L.w("text");
+        
+
+
     }
 
     //初始化数据
