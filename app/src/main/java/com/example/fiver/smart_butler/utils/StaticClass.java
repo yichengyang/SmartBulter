@@ -15,4 +15,6 @@ public class StaticClass {
     public static final String SHARE_IS_First = "isFirst";
     //Bugly key
     public static final String BUGLY_APP_ID = "79121fd519";
+    //Bomb key
+    public static final String BOMB_APP_ID="9f4566de560ce6091b329f8cf6e92b13";
 }
