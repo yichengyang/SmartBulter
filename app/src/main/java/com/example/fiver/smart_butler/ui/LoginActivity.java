@@ -15,16 +15,19 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.fiver.smart_butler.MainActivity;
 import com.example.fiver.smart_butler.R;
 import com.example.fiver.smart_butler.entity.MyUser;
 import com.example.fiver.smart_butler.utils.ShareUtils;
+import com.example.fiver.smart_butler.view.CustomDialog;
 
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
@@ -35,6 +38,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private EditText login_et_password;
     private Button btn_login;
     private CheckBox keep_password;
+    private TextView tv_forget;
+    private CustomDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +56,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         btn_login = (Button) findViewById(R.id.btn_login);
         btn_login.setOnClickListener(this);
         keep_password = (CheckBox) findViewById(R.id.keep_password);
+        tv_forget = (TextView)findViewById(R.id.tv_forget);
+        tv_forget.setOnClickListener(this);
+
+        dialog = new CustomDialog(this,300,300,R.layout.dialog_loading,R.style.Theme_dialog, Gravity.CENTER,R.style.pop_anmi_style);
+        //屏幕点击无效
+        dialog.setCancelable(false);
 
         //设置选中状态
         boolean isChecked = ShareUtils.getBoolean(this, "keep_pass_state", false);
@@ -74,6 +85,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 String password = login_et_password.getText().toString().trim();
                 //2.判断是否为空
                 if (!TextUtils.isEmpty(name) & !TextUtils.isEmpty(password)) {
+                    dialog.show();
                     //3.登录
                     final MyUser user = new MyUser();
                     user.setUsername(name);
@@ -81,6 +93,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     user.login(new SaveListener<MyUser>() {
                         @Override
                         public void done(MyUser myUser, BmobException e) {
+                            dialog.dismiss();
                             //判断结果
                             if (e == null) {
                                 //判断邮箱是否验证
@@ -99,6 +112,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 } else {
                     Toast.makeText(this, "输入框不能为空", Toast.LENGTH_SHORT).show();
                 }
+                break;
+            case R.id.tv_forget:
+                startActivity(new Intent(LoginActivity.this,ForgetPasswordActivity.class));
                 break;
         }
     }
