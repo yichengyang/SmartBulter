@@ -32,6 +32,7 @@ import android.widget.Toast;
 
 import com.example.fiver.smart_butler.R;
 import com.example.fiver.smart_butler.entity.MyUser;
+import com.example.fiver.smart_butler.ui.CourierActivity;
 import com.example.fiver.smart_butler.ui.LoginActivity;
 import com.example.fiver.smart_butler.utils.L;
 import com.example.fiver.smart_butler.utils.ShareUtils;
@@ -61,6 +62,8 @@ public class UserFragment extends Fragment implements View.OnClickListener {
     private Button btn_camera;
     private Button btn_picture;
     private Button btn_cancel;
+    //物流查询
+    private TextView tv_courier;
 
     @Nullable
     @Override
@@ -85,6 +88,10 @@ public class UserFragment extends Fragment implements View.OnClickListener {
         profile_image = (CircleImageView) view.findViewById(R.id.profile_image);
         profile_image.setOnClickListener(this);
         UtilTools.getImageToShare(getActivity(),profile_image);
+
+        //物流
+        tv_courier = (TextView)view.findViewById(R.id.tv_courier);
+        tv_courier.setOnClickListener(this);
 
         //初始化dialog
         dialog = new CustomDialog(getActivity(), 0, 0,
@@ -187,6 +194,9 @@ public class UserFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.btn_picture:
                 toPicture();
+                break;
+            case R.id.tv_courier:
+                startActivity(new Intent(getActivity(),CourierActivity.class));
                 break;
         }
     }
