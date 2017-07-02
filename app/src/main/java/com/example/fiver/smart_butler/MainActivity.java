@@ -52,8 +52,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void initData() {
         mTitle = new ArrayList<>();
         mTitle.add("服务管家");
+        mTitle.add("美女如云");
         mTitle.add("微信精选");
-        mTitle.add("美女社区");
         mTitle.add("个人中心");
 
         mFragment = new ArrayList<>();
