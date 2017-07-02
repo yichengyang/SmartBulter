@@ -34,6 +34,7 @@ import com.example.fiver.smart_butler.R;
 import com.example.fiver.smart_butler.entity.MyUser;
 import com.example.fiver.smart_butler.ui.CourierActivity;
 import com.example.fiver.smart_butler.ui.LoginActivity;
+import com.example.fiver.smart_butler.ui.PhoneActivity;
 import com.example.fiver.smart_butler.utils.L;
 import com.example.fiver.smart_butler.utils.ShareUtils;
 import com.example.fiver.smart_butler.utils.UtilTools;
@@ -64,6 +65,8 @@ public class UserFragment extends Fragment implements View.OnClickListener {
     private Button btn_cancel;
     //物流查询
     private TextView tv_courier;
+    //归属地查询
+    private TextView tv_phone;
 
     @Nullable
     @Override
@@ -92,6 +95,9 @@ public class UserFragment extends Fragment implements View.OnClickListener {
         //物流
         tv_courier = (TextView)view.findViewById(R.id.tv_courier);
         tv_courier.setOnClickListener(this);
+        //归属地
+        tv_phone = (TextView)view.findViewById(R.id.tv_phone);
+        tv_phone.setOnClickListener(this);
 
         //初始化dialog
         dialog = new CustomDialog(getActivity(), 0, 0,
@@ -198,6 +204,8 @@ public class UserFragment extends Fragment implements View.OnClickListener {
             case R.id.tv_courier:
                 startActivity(new Intent(getActivity(),CourierActivity.class));
                 break;
+            case R.id.tv_phone:
+                startActivity(new Intent(getActivity(),PhoneActivity.class));
         }
     }
     public static final String PHOTO_IMAGE_FILE_NAME = "fileImg.jpg";

@@ -21,4 +21,6 @@ public class StaticClass {
     public static final String COURIER_KEY = "a678b454cee66d890509844e7c950617";
 
     //http://v.juhe.cn/exp/index?key=a678b454cee66d890509844e7c950617&com=ems&no=1186465887499
+    //快递key
+    public static final String PHONE_KEY = "dafea8c5df59bfdb19fd4f986044d688";
 }
