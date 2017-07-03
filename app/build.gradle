@@ -48,6 +48,10 @@ dependencies {
     }
     //Picasso
     compile 'com.squareup.picasso:picasso:2.5.2'
+    //PhotoView
+    compile 'com.github.chrisbanes:PhotoView:1.3.0'
+    //新的PhotoView
+    compile 'com.bm.photoview:library:1.4.1'
 
 
 }

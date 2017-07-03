@@ -27,4 +27,6 @@ public class StaticClass {
     public static final String CHAT_LIST_KEY = "2c5e6ab4bd8a3af7c0296279e3291660";
     //微信精选
     public static final String WECHAT_KEY = "313184c165d2e734ffcb1b59fdbc19b3";
+    //妹子接口
+    public static final String GRIL_URL = "http://gank.io/api/search/query/listview/category/福利/count/50/page/1";
 }

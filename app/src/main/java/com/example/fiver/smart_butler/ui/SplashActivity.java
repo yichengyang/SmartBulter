@@ -73,7 +73,7 @@ public class SplashActivity extends AppCompatActivity{
     }
     private void initView(){
         //延时2000ms
-        handler.sendEmptyMessageDelayed(StaticClass.HANDLER_SPLASH,2000);
+        handler.sendEmptyMessageDelayed(StaticClass.HANDLER_SPLASH,1000);
         tv_splash = (TextView)findViewById(R.id.tv_splash);
         //设置字体
         UtilTools.setFont(this,tv_splash);
