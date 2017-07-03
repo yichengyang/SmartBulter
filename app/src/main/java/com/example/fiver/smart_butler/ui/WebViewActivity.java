@@ -50,20 +50,22 @@ public class WebViewActivity extends BaseActivity{
         mWebView.getSettings().setSupportZoom(true);
         mWebView.getSettings().setBuiltInZoomControls(true);
         //本地的接口
-        mWebView.setWebChromeClient(new WebViewClient());
+        mWebView.setWebChromeClient(new mWebViewClient());
         //加载网页
         mWebView.loadUrl(url);
         //设置本地加载
-        mWebView.setWebViewClient(new android.webkit.WebViewClient(){
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
-                view.loadUrl(url);
-                return true;
-            }
-        });
+        mWebView.setWebViewClient(new WebViewClient());
+        //设置本地加载
+//        mWebView.setWebViewClient(new android.webkit.WebViewClient(){
+//            @Override
+//            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+//                view.loadUrl(url);
+//                return true;
+//            }
+//        });
 
     }
-    class WebViewClient extends WebChromeClient{
+    class mWebViewClient extends WebChromeClient{
         @Override
         public void onProgressChanged(WebView view, int newProgress) {
             if (newProgress == 100){
