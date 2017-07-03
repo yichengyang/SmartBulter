@@ -29,4 +29,6 @@ public class StaticClass {
     public static final String WECHAT_KEY = "313184c165d2e734ffcb1b59fdbc19b3";
     //妹子接口
     public static final String GRIL_URL = "http://gank.io/api/search/query/listview/category/福利/count/50/page/1";
+    //语音key
+    public static final String VOICE_KEY = "595a516e";
 }
