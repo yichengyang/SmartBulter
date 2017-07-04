@@ -137,7 +137,7 @@ public class ButlerFragment extends Fragment implements View.OnClickListener {
         if (isSpeak==true){
             startSpeck(text );
         }
-        
+
         ChatListData data = new ChatListData();
         data.setType(ChatListAdapter.VALUE_LEFT_TEXT);
         data.setText(text);

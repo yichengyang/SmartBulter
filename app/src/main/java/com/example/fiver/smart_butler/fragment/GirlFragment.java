@@ -128,7 +128,7 @@ public class GirlFragment extends Fragment{
                 mListUrl.add(url);
                 GirlData data = new GirlData();
                 data.setImgUrl(url);
-                L.i(url);
+                //L.i(url);
                 mList.add(data);
             }
             adapter = new GridAdapter(getActivity(),mList);

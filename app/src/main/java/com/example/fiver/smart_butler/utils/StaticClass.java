@@ -31,4 +31,6 @@ public class StaticClass {
     public static final String GRIL_URL = "http://gank.io/api/search/query/listview/category/福利/count/50/page/1";
     //语音key
     public static final String VOICE_KEY = "595a516e";
+    //短信action
+    public static final String SMS_ACTION = "android.provider.Telephony.SMS_RECEIVED";
 }
