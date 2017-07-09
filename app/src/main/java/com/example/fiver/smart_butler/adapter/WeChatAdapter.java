@@ -76,6 +76,7 @@ public class WeChatAdapter extends BaseAdapter {
         //加载图片
         //Picasso.with(mContext).load(data.getImgUrl()).into(viewHolder.iv_image);
         //PicassoUtils.loadImageView(mContext,data.getImgUrl(),viewHolder.iv_image);
+
         PicassoUtils.loadImageViewSize(mContext,data.getImgUrl(),width/3,200,viewHolder.iv_image);
         return convertView;
     }

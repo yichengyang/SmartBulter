@@ -100,7 +100,7 @@ public class GirlFragment extends Fragment{
             public void onSuccess(String t) {
                 //Toast.makeText(getActivity(),t,Toast.LENGTH_SHORT).show();
                 //L.i("美女如云"+t);
-                parsingJson(t);
+                 parsingJson(t);
             }
         });
         //监听点击事件

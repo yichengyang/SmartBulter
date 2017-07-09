@@ -4,12 +4,13 @@
     android:orientation="vertical"
     android:gravity="center"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
 
     <ImageView
-        android:src="@mipmap/ic_launcher"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:src="@drawable/icon_dabai"
+        android:layout_width="80dp"
+        android:layout_height="80dp" />
     <EditText
         android:id="@+id/login_et_name"
         android:hint="用户名"
@@ -35,6 +36,8 @@
             android:textColor="@color/colorAccent"/>
     </LinearLayout>
     <Button
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:id="@+id/btn_login"
         android:layout_marginTop="10dp"
         android:background="@drawable/button_bg"
@@ -42,6 +45,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <Button
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:id="@+id/btn_register"
         android:layout_marginTop="10dp"
         android:background="@drawable/button_bg"

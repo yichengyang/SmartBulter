@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,12 +55,11 @@ public class WeChatFragment extends Fragment {
 
         //解析接口http://v.juhe.cn/weixin/query?key=您申请的KEY
         //http://v.juhe.cn/weixin/query?key=313184c165d2e734ffcb1b59fdbc19b3
-        String url = "http://v.juhe.cn/weixin/query?key="+ StaticClass.WECHAT_KEY+"&ps=40";
+        String url = "http://v.juhe.cn/weixin/query?key="+ StaticClass.WECHAT_KEY+"&ps=50";
         RxVolley.get(url, new HttpCallback() {
             @Override
             public void onSuccess(String t) {
-                //Toast.makeText(getActivity(),t,Toast.LENGTH_SHORT).show();
-                //L.i("微信精选"+t);
+
                 parsingJson(t);
             }
         });
@@ -82,15 +82,18 @@ public class WeChatFragment extends Fragment {
             JSONArray jsonArray = jsonResult.getJSONArray("list");
             for (int i = 0;i<jsonArray.length();i++){
                 JSONObject json = (JSONObject) jsonArray.get(i);
+                //第三方接口可能会出现空的图片
+                if (TextUtils.isEmpty(json.getString("firstImg"))){
+                    continue;
+                }
                 WeChatData data = new WeChatData();
                 String title = json.getString("title");
+                //L.i(title);
                 String url = json.getString("url");
-
+                data.setImgUrl(json.getString("firstImg"));
                 data.setTitle(title);
                 data.setSource(json.getString("source"));
-                data.setImgUrl(json.getString("firstImg"));
                 mList.add(data);
-
                 mListTitle.add(title);
                 mListUrl.add(url);
             }

@@ -19,6 +19,7 @@ import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.telephony.SmsManager;
 import android.telephony.SmsMessage;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -27,6 +28,7 @@ import android.widget.TextView;
 import com.example.fiver.smart_butler.R;
 import com.example.fiver.smart_butler.utils.L;
 import com.example.fiver.smart_butler.utils.StaticClass;
+import com.example.fiver.smart_butler.view.DispatchLinearLayout;
 
 public class SmsService extends Service implements View.OnClickListener {
     //发件人号码
@@ -39,12 +41,16 @@ public class SmsService extends Service implements View.OnClickListener {
     //布局参数
     private WindowManager.LayoutParams layoutParams;
     //view
-    private View mView;
+    private DispatchLinearLayout mView;
 
     private TextView tv_phone;
     private TextView tv_content;
     private Button btn_send_sms;
 
+    private HomeWatchReceiver mHomeWatchReceiver;
+
+    public static final String SYSTEM_DIALOGS_REASON_KEY = "reason";
+    public static final String SYSTEM_DIALOGS_HOME_KEY = "homekey";
     @Override
     public IBinder onBind(Intent intent) {
         return null;
@@ -65,6 +71,10 @@ public class SmsService extends Service implements View.OnClickListener {
         //设置权限
         intent.setPriority(Integer.MAX_VALUE);
         registerReceiver(receiver, intent);
+
+        mHomeWatchReceiver = new HomeWatchReceiver();
+        IntentFilter intentFilter = new IntentFilter(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
+        registerReceiver(mHomeWatchReceiver,intentFilter);
     }
 
     @Override
@@ -72,6 +82,7 @@ public class SmsService extends Service implements View.OnClickListener {
         super.onDestroy();
         unregisterReceiver(receiver);
         L.i("stop service");
+        unregisterReceiver(mHomeWatchReceiver );
     }
 
 
@@ -115,17 +126,33 @@ public class SmsService extends Service implements View.OnClickListener {
         //定义类型
         layoutParams.type = WindowManager.LayoutParams.TYPE_PHONE;
         //加载布局
-        mView = View.inflate(getApplicationContext(), R.layout.sms_item, null);
+        mView = (DispatchLinearLayout) View.inflate(getApplicationContext(), R.layout.sms_item, null);
         //初始化控件
         tv_phone = (TextView) mView.findViewById(R.id.tv_phone);
         tv_content = (TextView) mView.findViewById(R.id.tv_content);
         btn_send_sms = (Button) mView.findViewById(R.id.btn_send_sms);
         btn_send_sms.setOnClickListener(this);
-        //添加view到窗口
-        wm.addView(mView, layoutParams);
         tv_phone.setText("发件人:" + smsPhone);
         tv_content.setText(smsContent);
+        //添加view到窗口
+        wm.addView(mView, layoutParams);
+
+        mView.setDispatchKeyEventListener(mDispatchKeyEventListener);
+
+
     }
+    private DispatchLinearLayout.DispatchKeyEventListener mDispatchKeyEventListener = new DispatchLinearLayout.DispatchKeyEventListener() {
+        @Override
+        public boolean dispatchKeyEvent(KeyEvent event) {
+            if (event.getKeyCode() == KeyEvent.KEYCODE_BACK){
+                if (mView.getParent()!=null){
+                    wm.removeView(mView);
+                }
+                return true;
+            }
+            return false;
+        }
+    };
 
     @Override
     public void onClick(View v) {
@@ -148,6 +175,24 @@ public class SmsService extends Service implements View.OnClickListener {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra("sms_body", "");
         startActivity(intent);
+    }
+
+    //监听home键的广播
+    class HomeWatchReceiver extends BroadcastReceiver{
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            if (action.equals(Intent.ACTION_CLOSE_SYSTEM_DIALOGS)){
+                String reason = intent.getStringExtra(SYSTEM_DIALOGS_REASON_KEY);
+                if (SYSTEM_DIALOGS_HOME_KEY.equals(reason)){
+                    if (mView.getParent()!=null){
+                        wm.removeView(mView);
+                    }
+                }
+            }
+
+        }
     }
 
 }
