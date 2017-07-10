@@ -5,7 +5,7 @@ package com.example.fiver.smart_butler.adapter;
  *  文件名:  ChatListAdapter
  *  创建者:  YYC
  *  创建时间:  17/7/2 上午10:29
- *  描述:  TODO
+ *  描述:  聊天适配器
  */
 
 import android.content.Context;

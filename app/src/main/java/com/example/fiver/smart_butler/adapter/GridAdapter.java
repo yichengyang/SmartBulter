@@ -5,7 +5,7 @@ package com.example.fiver.smart_butler.adapter;
  *  文件名:  GridAdapter
  *  创建者:  YYC
  *  创建时间:  17/7/3 下午12:06
- *  描述:  TODO
+ *  描述:  图片适配器
  */
 
 import android.content.Context;

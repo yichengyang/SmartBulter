@@ -23,7 +23,7 @@ import com.example.fiver.smart_butler.utils.ShareUtils;
 import com.example.fiver.smart_butler.utils.StaticClass;
 import com.example.fiver.smart_butler.utils.UtilTools;
 
-public class SplashActivity extends AppCompatActivity{
+public class  SplashActivity extends AppCompatActivity{
     /**
      * 1.延迟2000ms
      * 2.判断程序是否第一次运行
